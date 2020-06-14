@@ -77,9 +77,6 @@
 			dataType: 'json',
 			success: function (response) {
 				adjectives = response['adjs'];
-			},
-			error: function (response) {
-				$('.jumbotron').html(response);
 			}
 		});
 
@@ -89,9 +86,6 @@
 			dataType: 'json',
 			success: function (response) {
 				nouns = response['personalNouns'];
-			},
-			error: function (response) {
-				$('.jumbotron').html(response);
 			}
 		});
 
@@ -101,9 +95,6 @@
 			dataType: 'json',
 			success: function (response) {
 				adverbs = response['adverbs'];
-			},
-			error: function (response) {
-				$('.jumbotron').html(response);
 			}
 		});
 
@@ -171,7 +162,7 @@
 				$('#NounResult').append('<span class="js-noun btn btn-outline-primary m-2 h1">' + result + '<i class="fa fa-unlock ml-3"/></span>');
 			}
 
-		});
+		}).click();
 
 	});
 </script>
