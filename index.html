@@ -103,11 +103,11 @@
 			let targetJquery = $(this);
 			if (targetJquery.hasClass('btn-outline-success')) {
 				targetJquery.addClass('btn-success').removeClass('btn-outline-success');
-				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
-				targetJquery.children('i').fadeIn(300);
+				targetJquery.siblings('i').removeClass('fa-unlock').addClass('fa-lock');
+				targetJquery.siblings('i').fadeIn(300);
 			} else {
 				targetJquery.addClass('btn-outline-success').removeClass('btn-success');
-				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
+				targetJquery.siblings('i').removeClass('fa-lock').addClass('fa-unlock');
 			}
 		});
 
@@ -115,11 +115,11 @@
 			let targetJquery = $(this);
 			if (targetJquery.hasClass('btn-outline-info')) {
 				targetJquery.addClass('btn-info').removeClass('btn-outline-info');
-				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
-				targetJquery.children('i').fadeIn(300);
+				targetJquery.siblings('i').removeClass('fa-unlock').addClass('fa-lock');
+				targetJquery.siblings('i').fadeIn(300);
 			} else {
 				targetJquery.addClass('btn-outline-info').removeClass('btn-info');
-				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
+				targetJquery.siblings('i').removeClass('fa-lock').addClass('fa-unlock');
 			}
 		});
 
@@ -127,16 +127,16 @@
 			let targetJquery = $(this);
 			if (targetJquery.hasClass('btn-outline-primary')) {
 				targetJquery.addClass('btn-primary').removeClass('btn-outline-primary');
-				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
-				targetJquery.children('i').fadeIn(300);
+				targetJquery.siblings('i').removeClass('fa-unlock').addClass('fa-lock');
+				targetJquery.siblings('i').fadeIn(300);
 			} else {
 				targetJquery.addClass('btn-outline-primary').removeClass('btn-primary');
-				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
+				targetJquery.siblings('i').removeClass('fa-lock').addClass('fa-unlock');
 			}
 		});
 
 		$(document).on('mouseenter', '.js-noun, .js-adjective, .js-adverb', function () {
-			let i = $(this).children('i');
+			let i = $(this).siblings('i');
 
 			if (i.hasClass('fa-unlock')) {
 				i.fadeIn(300);
@@ -144,7 +144,7 @@
 		});
 
 		$(document).on('mouseleave', '.js-noun, .js-adjective, .js-adverb', function () {
-			let i = $(this).children('i');
+			let i = $(this).siblings('i');
 
 			if (i.hasClass('fa-unlock')) {
 				i.fadeOut(300);
@@ -188,19 +188,19 @@
 			for (i = 0; i < advCount - advLockCount; i++) {
 				let result = '';
 				result += GetRandomWord(adverbs, result);
-				$('#AdverbResult').append('<span class="js-adverb btn btn-outline-success m-2 h1">' + result + '<i class="fa fa-unlock ml-3"/></span>');
+				$('#AdverbResult').append('<button class="js-adverb btn btn-outline-success m-2 h1">' + result + '</button><i class="fa fa-unlock ml-3"/>');
 			}
 
 			for (i = 0; i < adjCount - adjLockCount; i++) {
 				let result = '';
 				result += GetRandomWord(adjectives, result);
-				$('#AdjectiveResult').append('<span class="js-adjective btn btn-outline-info m-2 h1">' + result + '<i class="fa fa-unlock ml-3"/></span>');
+				$('#AdjectiveResult').append('<button class="js-adjective btn btn-outline-info m-2 h1">' + result + '</button><i class="fa fa-unlock ml-3"/>');
 			}
 
 			for (i = 0; i < nounCount - nounLockCount; i++) {
 				let result = '';
 				result += GetRandomWord(nouns, result);
-				$('#NounResult').append('<span class="js-noun btn btn-outline-primary m-2 h1">' + result + '<i class="fa fa-unlock ml-3"/></span>');
+				$('#NounResult').append('<button class="js-noun btn btn-outline-primary m-2 h1">' + result + '</button><i class="fa fa-unlock ml-3"/>');
 			}
 		});
 
