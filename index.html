@@ -41,7 +41,7 @@
 				<button id="Generate" class="btn btn-primary mt-3">Generate</button>
 			</div>
 		</div>
-		<div class="main row mt-4 justify-content-center align-items-center">
+		<div class="main row mt-4">
 			<div id="AdverbResult" class="col-12 text-center"></div>
 			<div id="AdjectiveResult" class="col-12 text-center"></div>
 			<div id="NounResult" class="col-12 text-center"></div>
@@ -137,6 +137,28 @@
 			let adjLockCount = $('.js-adjective.btn-info').length;
 			let nounLockCount = $('.js-noun.btn-primary').length;
 
+			if (advCount == 0) {
+				$('#AdverbResult').fadeOut(500)
+			}
+			else {
+				$('#AdverbResult').fadeOut(500)
+			}
+
+			if (adjCount == 0) {
+				$('#AdjectiveResult').fadeOut(500)
+			}
+			else {
+				$('#AdjectiveResult').fadeOut(500)
+			}
+
+			if (nounCount == 0) {
+				$('#NounResult').fadeOut(500)
+			}
+			else {
+				$('#NounResult').fadeOut(500)
+			}
+
+
 			$('.js-adverb:not(.btn-success)').remove();
 			$('.js-adjective:not(.btn-info)').remove();
 			$('.js-noun:not(.btn-primary)').remove();
@@ -158,7 +180,6 @@
 				result += GetRandomWord(nouns, result);
 				$('#NounResult').append('<span class="js-noun btn btn-outline-primary m-2 h1">' + result + '<i class="fa fa-unlock ml-3"/></span>');
 			}
-
 		});
 
 	});
