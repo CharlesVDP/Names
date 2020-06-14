@@ -100,6 +100,7 @@
 			if (targetJquery.hasClass('btn-outline-success')) {
 				targetJquery.addClass('btn-success').removeClass('btn-outline-success');
 				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
+				targetJquery.children('i').fadeIn(300);
 			} else {
 				targetJquery.addClass('btn-outline-success').removeClass('btn-success');
 				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
@@ -111,6 +112,7 @@
 			if (targetJquery.hasClass('btn-outline-info')) {
 				targetJquery.addClass('btn-info').removeClass('btn-outline-info');
 				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
+				targetJquery.children('i').fadeIn(300);
 			} else {
 				targetJquery.addClass('btn-outline-info').removeClass('btn-info');
 				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
@@ -122,9 +124,26 @@
 			if (targetJquery.hasClass('btn-outline-primary')) {
 				targetJquery.addClass('btn-primary').removeClass('btn-outline-primary');
 				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
+				targetJquery.children('i').fadeIn(300);
 			} else {
 				targetJquery.addClass('btn-outline-primary').removeClass('btn-primary');
 				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
+			}
+		});
+
+		$(document).on('mouseenter', '.js-noun, .js-adjective, .js-adverb', function () {
+			let i = $(this).children('i');
+
+			if (i.hasClass('fa-unlock')) {
+				i.fadeIn(300);
+			}
+		});
+
+		$(document).on('mouseleave', '.js-noun, .js-adjective, .js-adverb', function () {
+			let i = $(this).children('i');
+
+			if (i.hasClass('fa-unlock')) {
+				i.fadeOut(300);
 			}
 		});
 
@@ -157,7 +176,6 @@
 			else {
 				$('#NounResult').fadeIn(500);
 			}
-
 
 			$('.js-adverb:not(.btn-success)').remove();
 			$('.js-adjective:not(.btn-info)').remove();
