@@ -9,46 +9,34 @@
 	<meta charset="utf-8" />
 	<title>Words</title>
 	<style>
-		.h1 {
-			font-size: 6vh;
-		}
-
-		.top {
-			height: 20vh;
-		}
-
-		.main {
-			height: 80vh;
-		}
-
-		.fa-unlock{
-			display: none;
+		.fa-lock, .fa-unlock {
+			opacity: 0.3;
 		}
 	</style>
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="top row justify-content-center align-items-center">
-			<div class="col-auto text-success">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-auto offset-lg-0 col-6 offset-6 text-secondary">
+				<input id="Adverbs" type="number" class="mt-3" min="0" max="15" value="1" />
 				<label>Adverbs</label>
-				<input id="Adverbs" type="number" class="mt-3 ml-1" min="0" max="15" value="1" />
 			</div>
-			<div class="col-auto text-info">
+			<div class="col-lg-auto offset-lg-0 col-6 offset-6 text-info">
+				<input id="Adjectives" type="number" class="mt-3" min="0" max="15" value="1" />
 				<label>Adjectives</label>
-				<input id="Adjectives" type="number" class="mt-3 ml-1" min="0" max="15" value="1" />
 			</div>
-			<div class="col-auto text-primary">
+			<div class="col-lg-auto offset-lg-0 col-6 offset-6 text-primary">
+				<input id="Nouns" type="number" class="mt-3" min="0" max="15" value="1" />
 				<label>Nouns</label>
-				<input id="Nouns" type="number" class="mt-3 ml-1" min="0" max="15" value="1" />
 			</div>
-			<div class="col-auto">
-				<button id="Generate" class="btn btn-primary mt-3">Generate</button>
+			<div class="col-lg-auto offset-lg-0 col-6 offset-6">
+				<button id="Generate" class="btn btn-outline-success mt-3"><i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
-		<div class="main row mt-4">
-			<div id="AdverbResult" class="col-12 text-center"></div>
-			<div id="AdjectiveResult" class="col-12 text-center"></div>
-			<div id="NounResult" class="col-12 text-center"></div>
+		<div class="mt-4 row align-items-center justify-content-center">
+			<div id="AdverbResult" class="col-auto text-center"></div>
+			<div id="AdjectiveResult" class="col-auto text-center"></div>
+			<div id="NounResult" class="col-auto text-center"></div>
 		</div>
 	</div>
 </body>
@@ -101,13 +89,12 @@
 
 		$(document).on('click', '.js-adverb', function () {
 			let targetJquery = $(this);
-			if (targetJquery.hasClass('btn-outline-success')) {
-				targetJquery.addClass('btn-success').removeClass('btn-outline-success');
-				targetJquery.siblings('i').removeClass('fa-unlock').addClass('fa-lock');
-				targetJquery.siblings('i').fadeIn(300);
+			if (targetJquery.hasClass('btn-outline-secondary')) {
+				targetJquery.addClass('btn-secondary').removeClass('btn-outline-secondary');
+				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
 			} else {
-				targetJquery.addClass('btn-outline-success').removeClass('btn-success');
-				targetJquery.siblings('i').removeClass('fa-lock').addClass('fa-unlock');
+				targetJquery.addClass('btn-outline-secondary').removeClass('btn-secondary');
+				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
 			}
 		});
 
@@ -115,11 +102,10 @@
 			let targetJquery = $(this);
 			if (targetJquery.hasClass('btn-outline-info')) {
 				targetJquery.addClass('btn-info').removeClass('btn-outline-info');
-				targetJquery.siblings('i').removeClass('fa-unlock').addClass('fa-lock');
-				targetJquery.siblings('i').fadeIn(300);
+				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
 			} else {
 				targetJquery.addClass('btn-outline-info').removeClass('btn-info');
-				targetJquery.siblings('i').removeClass('fa-lock').addClass('fa-unlock');
+				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
 			}
 		});
 
@@ -127,27 +113,10 @@
 			let targetJquery = $(this);
 			if (targetJquery.hasClass('btn-outline-primary')) {
 				targetJquery.addClass('btn-primary').removeClass('btn-outline-primary');
-				targetJquery.siblings('i').removeClass('fa-unlock').addClass('fa-lock');
-				targetJquery.siblings('i').fadeIn(300);
+				targetJquery.children('i').removeClass('fa-unlock').addClass('fa-lock');
 			} else {
 				targetJquery.addClass('btn-outline-primary').removeClass('btn-primary');
-				targetJquery.siblings('i').removeClass('fa-lock').addClass('fa-unlock');
-			}
-		});
-
-		$(document).on('mouseenter', '.js-noun, .js-adjective, .js-adverb', function () {
-			let i = $(this).siblings('i');
-
-			if (i.hasClass('fa-unlock')) {
-				i.fadeIn(300);
-			}
-		});
-
-		$(document).on('mouseleave', '.js-noun, .js-adjective, .js-adverb', function () {
-			let i = $(this).siblings('i');
-
-			if (i.hasClass('fa-unlock')) {
-				i.fadeOut(300);
+				targetJquery.children('i').removeClass('fa-lock').addClass('fa-unlock');
 			}
 		});
 
@@ -156,7 +125,7 @@
 			let adjCount = parseInt($('#Adjectives').val());
 			let nounCount = parseInt($('#Nouns').val());
 
-			let advLockCount = $('.js-adverb.btn-success').length;
+			let advLockCount = $('.js-adverb.btn-secondary').length;
 			let adjLockCount = $('.js-adjective.btn-info').length;
 			let nounLockCount = $('.js-noun.btn-primary').length;
 
@@ -181,26 +150,26 @@
 				$('#NounResult').fadeIn(500);
 			}
 
-			$('.js-adverb:not(.btn-success)').remove();
+			$('.js-adverb:not(.btn-secondary)').remove();
 			$('.js-adjective:not(.btn-info)').remove();
 			$('.js-noun:not(.btn-primary)').remove();
 
 			for (i = 0; i < advCount - advLockCount; i++) {
 				let result = '';
 				result += GetRandomWord(adverbs, result);
-				$('#AdverbResult').append('<button class="js-adverb btn btn-outline-success m-2 h1">' + result + '</button><i class="fa fa-unlock ml-3"/>');
+				$('#AdverbResult').append('<button class="js-adverb btn btn-outline-secondary m-2"><h1>' + result + '<i class="fa fa-unlock ml-1"/></h1></button>');
 			}
 
 			for (i = 0; i < adjCount - adjLockCount; i++) {
 				let result = '';
 				result += GetRandomWord(adjectives, result);
-				$('#AdjectiveResult').append('<button class="js-adjective btn btn-outline-info m-2 h1">' + result + '</button><i class="fa fa-unlock ml-3"/>');
+				$('#AdjectiveResult').append('<button class="js-adjective btn btn-outline-info m-2"><h1>' + result + '<i class="fa fa-unlock ml-1"/></h1></button>');
 			}
 
 			for (i = 0; i < nounCount - nounLockCount; i++) {
 				let result = '';
 				result += GetRandomWord(nouns, result);
-				$('#NounResult').append('<button class="js-noun btn btn-outline-primary m-2 h1">' + result + '</button><i class="fa fa-unlock ml-3"/>');
+				$('#NounResult').append('<button class="js-noun btn btn-outline-primary m-2"><h1>' + result + '<i class="fa fa-unlock ml-1"/></h1></button>');
 			}
 		});
 
